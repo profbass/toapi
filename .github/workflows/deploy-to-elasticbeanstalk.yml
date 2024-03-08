@@ -30,7 +30,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1' # Set to your AWS region
+        AWS_REGION: 'us-east-2' # Set to your AWS region
       run: |
-        eb deploy your-environment-name --profile default
+        eb deploy Tylerolmstedeb-env --profile default
 
