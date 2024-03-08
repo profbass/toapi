@@ -32,7 +32,7 @@ jobs:
         aws-region: us-east-2
 
     - name: Initialize Elastic Beanstalk Application
-      run: eb init -p python-3.8 Tylerolmstedeb-env --region us-east-2
+      run: eb init -p python-3.8 tylerolmsted_eb --region us-east-2
 
     - name: Deploy to Elastic Beanstalk
       run: eb deploy Tylerolmstedeb-env
