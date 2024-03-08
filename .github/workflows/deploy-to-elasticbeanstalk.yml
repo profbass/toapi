@@ -3,7 +3,7 @@ name: Deploy to AWS Elastic Beanstalk
 on:
   push:
     branches:
-      - master # Set to your default branch
+      - master # Adjust if your default branch has a different name
 
 jobs:
   deploy:
@@ -14,27 +14,25 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8' # Set to your Python version
+        python-version: '3.8' # Ensure this matches the runtime version expected by your Elastic Beanstalk environment
 
     - name: Upgrade pip and setuptools
-      run: |
-          python -m pip install --upgrade pip setuptools
+      run: python -m pip install --upgrade pip setuptools wheel
 
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
         pip install awsebcli
         pip install -r requirements.txt
 
-    - name: Run eb init
-      run: |
-        eb init -p python-3.8 Tylerolmstedeb-env --region us-east-2 --platform "64bit Amazon Linux 2 v3.1.0 running Python 3.8"
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Initialize Elastic Beanstalk Application
+      run: eb init -p python-3.8 Tylerolmstedeb-env --region us-east-2
 
     - name: Deploy to Elastic Beanstalk
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-2' # Set to your AWS region
-      run: |
-        eb deploy Tylerolmstedeb-env --profile default
-
+      run: eb deploy Tylerolmstedeb-env
