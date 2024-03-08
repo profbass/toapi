@@ -26,6 +26,10 @@ jobs:
         pip install awsebcli
         pip install -r requirements.txt
 
+    - name: Run eb init
+      run: |
+        eb init -p python-3.8 Tylerolmstedeb-env --region us-east-2 --platform "64bit Amazon Linux 2 v3.1.0 running Python 3.8"
+
     - name: Deploy to Elastic Beanstalk
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
