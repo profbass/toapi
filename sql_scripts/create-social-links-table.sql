@@ -1,0 +1,8 @@
+CREATE TABLE social_links (
+    id SERIAL PRIMARY KEY,
+    platform VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    people_id INT REFERENCES people(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,20 @@
+{
+  "name": "toapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "setup-db": "node ./seed_scripts/setup-db.js",
+    "seed-db": "node ./seed_scripts/seed-db.js"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.4.5",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pg": "^8.11.3"
+  }
+}
