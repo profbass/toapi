@@ -11,13 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Assuming your Express.js application doesn't require Python.
-    # Removed the Setup Python step as it's not necessary for Node.js environments.
-
-    - name: Install dependencies
-      run: |
-          pip install awsebcli
-          pip install -r requirements.txt
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14' # Specify your Node.js version here
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -28,16 +25,16 @@ jobs:
 
     - name: Install AWS Elastic Beanstalk CLI
       run: |
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-        . ~/.nvm/nvm.sh
-        nvm install node
-        npm install -g awsebcli
+        pip install awsebcli
+
+    - name: Install NPM dependencies
+      run: |
+        npm install
 
     - name: Initialize Elastic Beanstalk Application
-      run: eb init -p "Node.js" tylerolmstedco --region us-east-2
+      run: |
+        eb init -p "Node.js" tylerolmstedco --region us-east-2
 
     - name: Deploy to Elastic Beanstalk
-      run: eb deploy Tylerolmstedco-env
+      run: |
+        eb deploy Tylerolmstedco-env
