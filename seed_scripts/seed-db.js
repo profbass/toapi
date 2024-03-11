@@ -10,7 +10,7 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
   ssl: {
     rejectUnauthorized: true,
-    ca: fs.readFileSync('/var/app/current/rds-combined-ca-bundle.pem').toString(),
+    ca: fs.readFileSync('./certs/rds-combined-ca-bundle.pem').toString(),
   },
 });
 
