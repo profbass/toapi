@@ -14,6 +14,11 @@ jobs:
     # Assuming your Express.js application doesn't require Python.
     # Removed the Setup Python step as it's not necessary for Node.js environments.
 
+    - name: Install dependencies
+      run: |
+          pip install awsebcli
+          pip install -r requirements.txt
+
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
