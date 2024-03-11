@@ -11,18 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8' # Ensure this matches the runtime version expected by your Elastic Beanstalk environment
-
-    - name: Upgrade pip and setuptools
-      run: python -m pip install --upgrade pip setuptools wheel
-
-    - name: Install dependencies
-      run: |
-        pip install awsebcli
-        pip install -r requirements.txt
+    # Assuming your Express.js application doesn't require Python.
+    # Removed the Setup Python step as it's not necessary for Node.js environments.
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -31,8 +21,18 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-2
 
+    - name: Install AWS Elastic Beanstalk CLI
+      run: |
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+        . ~/.nvm/nvm.sh
+        nvm install node
+        npm install -g awsebcli
+
     - name: Initialize Elastic Beanstalk Application
-      run: eb init -p python-3.8 tylerolmsted_eb --region us-east-2
+      run: eb init -p "Node.js" tylerolmstedco --region us-east-2
 
     - name: Deploy to Elastic Beanstalk
-      run: eb deploy Tylerolmstedeb-env
+      run: eb deploy Tylerolmstedco-env
