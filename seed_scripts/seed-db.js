@@ -2,8 +2,6 @@ const fs = require('fs').promises;
 const path = require('path');
 const { Pool } = require('pg');
 
-const caCertPath = path.join(__dirname, '..', 'certs', 'rds-combined-ca-bundle.pem');
-
 const pool = new Pool({
   user: process.env.DB_USER || 'tyler',
   host: process.env.DB_HOST || 'localhost',
@@ -11,8 +9,7 @@ const pool = new Pool({
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT || 5432,
   ssl: {
-    rejectUnauthorized: true,
-    ca: fs.readFileSync(caCertPath).toString(),
+    rejectUnauthorized: flase,
   },
 });
 
