@@ -3,11 +3,11 @@ const path = require('path');
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'tyler',
-  host: 'localhost',
-  database: 'tylerolmsted',
-  password: 'Angelica423!',
-  port: 5432,
+  user: process.env.DB_USER || 'tyler',
+  host: process.env.DB_HOST || 'localhost',
+  database: process.env.DB_NAME || 'tylerolmsted',
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT || 5432,
 });
 
 const runSqlFile = (filePath) => {
