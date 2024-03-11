@@ -2,8 +2,6 @@ const fs = require('fs').promises;
 const path = require('path');
 const { Pool } = require('pg');
 
-const path = require('path');
-
 const pool = new Pool({
   user: process.env.DB_USER || 'tyler',
   host: process.env.DB_HOST || 'localhost',
