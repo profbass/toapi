@@ -8,6 +8,10 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'tylerolmsted',
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT || 5432,
+  ssl: {
+    rejectUnauthorized: true,
+    ca: fs.readFileSync('/var/app/current/rds-combined-ca-bundle.pem').toString(),
+  },
 });
 
 const runSqlFile = (filePath) => {
