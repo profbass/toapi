@@ -2,6 +2,7 @@ const fs = require('fs').promises;
 const path = require('path');
 const { Pool } = require('pg');
 
+// TODO: Add the SSL certificate to the pool configuration
 const pool = new Pool({
   user: process.env.DB_USER || 'tyler',
   host: process.env.DB_HOST || 'localhost',
@@ -10,6 +11,7 @@ const pool = new Pool({
   port: process.env.DB_PORT || 5432,
   ssl: {
     rejectUnauthorized: false,
+    // ca: fs.readFileSync('../certs/rds-combined-ca-bundle.pem').toString(),
   },
 });
 
