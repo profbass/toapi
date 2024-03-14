@@ -5,7 +5,9 @@ const db = require('../config/db');
 // GET all people
 router.get('/', async (req, res) => {
   try {
-    const result = await db.query('SELECT * FROM people');
+    const result = await db.query('SELECT * FROM people ORDER BY id ASC');
+    const totalItems = result.rows.length;
+    res.set('Content-Range', `people 0-${totalItems}/${totalItems}`);
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });

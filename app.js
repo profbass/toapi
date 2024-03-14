@@ -1,5 +1,6 @@
 var createError = require('http-errors');
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -12,6 +13,9 @@ var peopleRoutes = require('./routes/peopleRoutes');
 
 var app = express();
 
+app.use(cors({
+  exposedHeaders: ['Content-Range'],
+}));
 
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use('/people', peopleRoutes); // Mount the router on the /people path
