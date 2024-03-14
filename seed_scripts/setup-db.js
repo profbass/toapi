@@ -9,10 +9,7 @@ const pool = new Pool({
   database: process.env.DB_NAME || 'tylerolmsted',
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT || 5432,
-  ssl: {
-    rejectUnauthorized: false,
-    // ca: fs.readFileSync('../certs/rds-combined-ca-bundle.pem').toString(),
-  },
+  ssl: false
 });
 
 const runSqlFile = (filePath) => {
