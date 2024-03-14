@@ -10,6 +10,7 @@ require('dotenv').config(); // Load environment variables from a .env file into 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var peopleRoutes = require('./routes/peopleRoutes');
+var jobsRoutes = require('./routes/jobsRoutes');
 
 var app = express();
 
@@ -17,8 +18,9 @@ app.use(cors({
   exposedHeaders: ['Content-Range'],
 }));
 
-app.use(express.json()); // Middleware to parse JSON bodies
-app.use('/people', peopleRoutes); // Mount the router on the /people path
+app.use(express.json());
+app.use('/people', peopleRoutes); 
+app.use('/jobs', jobsRoutes);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

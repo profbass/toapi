@@ -3,7 +3,7 @@ CREATE TABLE jobs (
     company VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
     salary DECIMAL(10, 2),
-    desctiption TEXT,
+    description TEXT,
     start_date DATE,
     end_date DATE,
     logo VARCHAR(255),

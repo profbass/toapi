@@ -4,7 +4,7 @@ REST API for tylerolmsted.co
 
 ## Installation
 
-This projct is setup using Express and PostgreSQL. The instalation instruction will go over setting up your local PostgreSQL database and dev enviroment.
+This projct is built with Express and PostgreSQL. The instalation instruction will go over setting up your local PostgreSQL database and dev enviroment.
 
 ### Install Dependencies
 
