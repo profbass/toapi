@@ -11,16 +11,19 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var peopleRoutes = require('./routes/peopleRoutes');
 var jobsRoutes = require('./routes/jobsRoutes');
+var contact = require('./routes/contact');
 
 var app = express();
 
-app.use(cors({
-  exposedHeaders: ['Content-Range'],
-}));
+// Configure CORS
+app.use(cors());
 
+
+// Routes
 app.use(express.json());
 app.use('/people', peopleRoutes); 
 app.use('/jobs', jobsRoutes);
+app.use('/contact', contact);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

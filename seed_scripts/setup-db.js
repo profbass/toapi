@@ -59,6 +59,7 @@ const runSeedScripts = async () => {
   await runSqlFile('../sql_scripts/create-people-table.sql');
   await runSqlFile('../sql_scripts/create-jobs-table.sql');
   await runSqlFile('../sql_scripts/create-social-links-table.sql');
+  await runSqlFile('../sql_scripts/create-contacts-table.sql');
 };
 
 runSeedScripts();

@@ -36,9 +36,10 @@ const runSqlFile = async (filePath) => {
 };
 
 const runSeedScripts = async () => {
-  await runSqlFile('../sql_scripts/seed-people.sql');
-  await runSqlFile('../sql_scripts/seed-jobs.sql');
-  await runSqlFile('../sql_scripts/seed-social-links.sql');
+  // await runSqlFile('../sql_scripts/seed-people.sql');
+  // await runSqlFile('../sql_scripts/seed-jobs.sql');
+  // await runSqlFile('../sql_scripts/seed-social-links.sql');
+  await runSqlFile('../sql_scripts/seed-contacts.sql');
 };
 
 runSeedScripts();
